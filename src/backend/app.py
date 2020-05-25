@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS, cross_origin
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import func, select
 from database import Click, db
@@ -6,9 +7,11 @@ import traceback
 
 app = Flask(__name__)
 app.total_clicks = 0
-
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/api/counts', methods=['GET', 'POST'])
+@cross_origin()
 def main_endpoint():
     if request.method == 'GET':
         return jsonify({'clicks': app.total_clicks})
