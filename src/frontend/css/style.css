@@ -57,3 +57,11 @@ footer .copyright-notice strong {
     font-size: 1.2rem;
     font-weight: 700;
 }
+
+footer .copyright-notice a:link,
+footer .copyright-notice a:visited,
+footer .copyright-notice a:hover,
+footer .copyright-notice a:active {
+    color: white;
+    text-decoration: none;
+}

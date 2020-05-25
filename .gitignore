@@ -119,3 +119,7 @@ dmypy.json
 .history
 
 # End of https://www.gitignore.io/api/python,visualstudiocode
+
+.netlify
+.vscode
+*.db
