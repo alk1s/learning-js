@@ -30,7 +30,7 @@ def main_endpoint():
 @app.before_request
 def before_request():
     request.remote_addr = request.headers.get(
-        "CF-Connecting-IP") or request.headers.get("X-Forwarded-For") or request.remote_addr
+        "CF-Connecting-IP", request.headers.get("X-Forwarded-For", request.remote_addr))
 
 
 @app.errorhandler(Exception)
