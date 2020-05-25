@@ -15,7 +15,7 @@ def get_real_ip():
     return request.headers.get("CF-Connecting-IP", request.headers.get("X-Forwarded-For", request.remote_addr))
 
 
-limiter = Limiter(app, key_func=get_real_ip(),
+limiter = Limiter(app, key_func=get_real_ip,
                   default_limits=["200 per day", "50 per hour"])
 
 
