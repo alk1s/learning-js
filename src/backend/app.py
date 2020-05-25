@@ -1,5 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import func, select
 from database import Click, db
@@ -9,9 +11,15 @@ app = Flask(__name__)
 app.total_clicks = 0
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+limiter = Limiter(
+    app,
+    key_func=get_remote_address,
+    default_limits=["200 per day", "50 per hour"]
+)
 
 @app.route('/api/counts', methods=['GET', 'POST'])
 @cross_origin()
+@limiter.limit("5/second", override_defaults=False)
 def main_endpoint():
     if request.method == 'GET':
         return jsonify({'clicks': app.total_clicks})
