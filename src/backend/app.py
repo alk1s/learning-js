@@ -9,7 +9,13 @@ import traceback
 app = Flask(__name__)
 app.total_clicks = 0
 CORS(app)
-limiter = Limiter(app, key_func=lambda: request.remote_addr,
+
+
+def get_real_ip():
+    return request.headers.get("CF-Connecting-IP", request.headers.get("X-Forwarded-For", request.remote_addr))
+
+
+limiter = Limiter(app, key_func=get_real_ip(),
                   default_limits=["200 per day", "50 per hour"])
 
 
@@ -20,17 +26,11 @@ def main_endpoint():
         return jsonify({'clicks': app.total_clicks})
     elif request.method == 'POST':
         app.total_clicks += 1
-        db.add(Click(app.total_clicks, request.remote_addr))
+        db.add(Click(app.total_clicks, get_real_ip()))
         db.commit()
         return "", 204
     else:
         return "", 405
-
-
-@app.before_request
-def before_request():
-    request.remote_addr = request.headers.get(
-        "CF-Connecting-IP", request.headers.get("X-Forwarded-For", request.remote_addr))
 
 
 @app.errorhandler(Exception)
