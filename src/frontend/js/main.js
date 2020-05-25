@@ -1,20 +1,15 @@
 const api_url = "http://api.clickcount.cf/api/counts";
-const el = document.getElementById('counter-regulator');
 
-document.onload = () => {
-    fetch(api_url, { method: 'POST' }).then(h => {
-        if (h)
-            console.log(h);
+function autistic() {
+    fetch(api_url, { method: 'POST' }).then(async res => {
+        if (res.status != 204)
+            return console.log(await res.json());
 
-        fetch(api_url).then(res => refresh(el.innerHTML = `${res.json().clicks}`));
+        fetch(api_url).then(async res => {
+            if (res.status != 200)
+                return console.log(await res.json());
+
+            document.getElementById("counter-regulator").innerHTML = `${(await res.json()).clicks}`;
+        });
     });
-};
-
-// function gay() {
-//     fetch(api_url, { method: 'POST' }).then(h => {
-//         if (h)
-//             console.log(h);
-
-//         fetch(api_url).then(res => refresh(el.innerHTML = `${res.json().clicks}`));
-//     });
-// }
+}
