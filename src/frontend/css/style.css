@@ -4,12 +4,12 @@
 }
 
 body {
+    font-family: var(--main-font);
     margin: 0;
     padding: 0;
 }
 
 header {
-    font-family: var(--main-font);
     font-weight: 700;
     text-align: center;
     font-size: xx-large;
@@ -47,7 +47,6 @@ footer {
 }
 
 footer .copyright-notice {
-    font-family: var(--main-font);
     color: goldenrod;
     text-align: center;
 }
