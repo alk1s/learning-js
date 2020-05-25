@@ -34,7 +34,7 @@ def before_request():
 
 
 @app.errorhandler(Exception)
-def handle_500():
+def handle_500(error):
     traceback.print_exc()
     return jsonify({"message": traceback.format_exc()}), 500
 
