@@ -1,36 +1,24 @@
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#3a4091">
-    <!-- Primary Meta Tags -->
-    <title>The Click Counter Project</title>
-    <meta name="title" content="The Click Counter Project">
-    <meta name="description" content="Click it, you know you want to.
+const api_url = "https://api.clickcount.cf/api/counts"; function autistic() { fetch(api_url, { method: 'POST' }).then(async res => { if (res.status != 204) return console.log(await res.json()); fetch(api_url).then(async res => { if (res.status != 200)
+return console.log(await res.json()); document.getElementById("counter-regulator").innerHTML = `${(await res.json()).clicks} clicks`; }); }); }
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://clickcount.cf">
+<meta property="og:title" content="The Click Counter Project">
+<meta property="og:description" content="Click it, you know you want to.
 This counter is literally so satisfying.">
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://clickcount.cf">
-    <meta property="og:title" content="The Click Counter Project">
-    <meta property="og:description" content="Click it, you know you want to.
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://clickcount.cf">
+<meta property="twitter:title" content="The Click Counter Project">
+<meta property="twitter:description" content="Click it, you know you want to.
 This counter is literally so satisfying.">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://clickcount.cf">
-    <meta property="twitter:title" content="The Click Counter Project">
-    <meta property="twitter:description" content="Click it, you know you want to.
-This counter is literally so satisfying.">
-
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/main.js"></script>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js"></script>
 </head>
 
-<body onload="autistic()">
+<body onload="trelos()">
     <header>
         <h1>The Click Counter</h1>
         <h4>The counter goes to bed overnight 🌙</h4>
@@ -39,11 +27,9 @@ This counter is literally so satisfying.">
 
     <main>
         <div class="container">
-
             <div class="inner">
                 <span class="dot">
                  <div class="counter">
-                     <!-- <button onclick="count()">+1</button> -->
                      <div class="counter-stats">
                          <h2 id="counter-regulator">Loading...</h2>
                          <h4>and going...</h4>

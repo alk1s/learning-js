@@ -8,7 +8,17 @@ body {
     text-rendering: geometricPrecision;
     margin: 0;
     padding: 0;
-    background-color: #000;
+    animation: overnight 5s infinite alternate linear;
+    background-color: #222;
+}
+
+@keyframes overnight {
+    from {
+        background-color: #252525;
+    }
+    to {
+        background-color: #222;
+    }
 }
 
 header {
@@ -35,6 +45,7 @@ header {
     border-radius: 50%;
     display: inline-block;
     margin: 10%;
+    box-shadow: #00000050 0px 0px 4px 4px;
 }
 
 .container {
@@ -46,6 +57,7 @@ footer {
     padding: 15px;
     color: white;
     background-color: #333;
+    box-shadow: #00000050 0px -2px 4px 4px;
 }
 
 footer .copyright-notice {

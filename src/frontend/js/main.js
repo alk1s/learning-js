@@ -1,6 +1,6 @@
 const api_url = "https://api.clickcount.cf/api/counts";
 
-function autistic() {
+function trelos() {
     fetch(api_url, { method: 'POST' }).then(async res => {
         if (res.status != 204)
             return console.log(await res.json());
