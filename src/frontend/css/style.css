@@ -5,6 +5,7 @@
 
 body {
     font-family: var(--main-font);
+    text-rendering: geometricPrecision;
     margin: 0;
     padding: 0;
 }
@@ -19,7 +20,7 @@ header {
 .counter {
     border-radius: 100px;
     padding: 50px;
-    margin: 10%;
+    margin: 8%;
 }
 
 .counter-stats {
