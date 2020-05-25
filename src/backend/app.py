@@ -19,7 +19,7 @@ def main_endpoint():
         app.total_clicks += 1
 
         try:
-            db.add(Click(app.total_clicks, request.headers.get("HTTP_CF_CONNECTING_IP") or request.remote_addr))
+            db.add(Click(app.total_clicks, request.headers.get('CF-Connecting-IP') or request.remote_addr))
             db.commit()
             return "", 204
         except:
