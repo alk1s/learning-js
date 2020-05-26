@@ -14,6 +14,8 @@ CORS(app)
 def get_real_ip():
     return request.headers.get("CF-Connecting-IP", request.headers.get("X-Forwarded-For", request.remote_addr))
 
+def get_user_agent():
+    return request.headers.get('User-Agent', request.headers.get("X-Forwarded-For", request.remote_addr))
 
 limiter = Limiter(app, key_func=get_real_ip,
                   default_limits=["200 per day", "50 per hour"])
@@ -26,7 +28,7 @@ def main_endpoint():
         return jsonify({'clicks': app.total_clicks})
     elif request.method == 'POST':
         app.total_clicks += 1
-        db.add(Click(app.total_clicks, get_real_ip()))
+        db.add(Click(app.total_clicks, get_real_ip(), get_user_agent()))
         db.commit()
         return "", 204
     else:

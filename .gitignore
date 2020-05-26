@@ -123,3 +123,4 @@ dmypy.json
 .netlify
 .vscode
 *.db
+config.py
