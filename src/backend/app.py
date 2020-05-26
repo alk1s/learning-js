@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_limiter import Limiter
+from flask_simple_geoip import SimpleGeoIP
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import func, select
 from database import Click, db
@@ -9,6 +10,7 @@ import traceback
 app = Flask(__name__)
 app.total_clicks = 0
 CORS(app)
+geo = SimpleGeoIP(app)
 
 
 def get_real_ip():
@@ -34,6 +36,7 @@ def main_endpoint():
     else:
         return "", 405
 
+@app.route('/api/get/<int:id>')
 
 @app.errorhandler(Exception)
 def handle_500(error):
