@@ -17,7 +17,7 @@ class Click(Base):
     ip_useragent = Column(String(2048), nullable=False)
     date = Column(DateTime, default=datetime.utcnow)
 
-    def __init__(self, _id, ip_address):
+    def __init__(self, _id, ip_address, ip_useragent):
         self._id = _id
         self.ip_address = ip_address
         self.ip_useragent = ip_useragent
